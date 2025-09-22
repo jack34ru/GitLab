@@ -67,3 +67,42 @@ job_2_build:
 ![Screen 7](https://github.com/jack34ru/GitLab/blob/master/screens/Screenshot_105.png)
 Скриншот 4 к решению 2
 ![Screen 4](https://github.com/jack34ru/GitLab/blob/master/screens/Screenshot_106.png)
+
+### Задание 3*
+
+Измените CI так, чтобы:
+
+ - этап сборки запускался сразу, не дожидаясь результатов тестов;
+ - тесты запускались только при изменении файлов с расширением *.go.
+
+В качестве ответа добавьте в шаблон с решением файл gitlab-ci.yml своего проекта или вставьте код в соответсвующее поле в шаблоне.
+
+### Решение 3
+
+ Листинг кода файла gitlab-ci.yml к решению 2:
+```
+stages:
+  - test
+  - build
+
+job_1_test:
+  stage: test
+  image: golang:1.17
+  script:
+    - go test .
+  tags:
+    - hwgitlab
+  rules:
+    - changes:
+        - "*.go"
+
+job_2_build:
+  stage: build
+  image: docker:latest
+  script:
+    - docker build .
+  tags:
+    - hwgitlab
+  needs: []
+
+```
