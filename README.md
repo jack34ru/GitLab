@@ -79,7 +79,7 @@ job_2_build:
 
 ### Решение 3
 
- Листинг кода файла gitlab-ci.yml к решению 2:
+ Листинг кода файла gitlab-ci.yml к решению 3:
 ```
 stages:
   - test
